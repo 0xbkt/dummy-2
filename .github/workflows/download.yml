@@ -1,0 +1,16 @@
+name: Download dummy stuff
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  dl:
+    runs-on: ubuntu-latest
+    env:
+      VOMIT_URL: ${{ secrets.VOMIT_URL }}
+    steps:
+      - run: aria2c --summary-interval=5 --file-allocation=none -x5 -s5 -j5 "$VOMIT_URL"
